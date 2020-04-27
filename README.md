@@ -4,7 +4,7 @@ Secure and Minimal tcp proxy.
 ## Environment variables
 ### pre-set runtime variables
 * VAR_PORT="8080"
-* VAR_FINAL_COMMAND="/usr/local/bin/postgres --config_file=\"\$VAR_CONFIG_FILE\""
+* VAR_FINAL_COMMAND='socat TCP-LISTEN:${VAR_LISTEN_PORT:-$VAR_PORT},fork,reuseaddr TCP:$VAR_HOST:$VAR_PORT'
 * VAR_LINUX_USER="proxy"
 
 ### Runtime variables
