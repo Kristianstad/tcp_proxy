@@ -1,2 +1,2 @@
-# sam-tcpproxy
-Secure and Minimal tcp-proxy.
+# sam-tcp_proxy
+Secure and Minimal tcp proxy.
