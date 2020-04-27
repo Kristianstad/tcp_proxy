@@ -1,5 +1,5 @@
 # sam-tcp_proxy
-Secure and Minimal tcp proxy.
+Secure and Minimal tcp proxy. Runs as non-privileged user and can therefore only proxy to unprivileged ports (>=1024).
 
 ## Environment variables
 ### pre-set runtime variables
