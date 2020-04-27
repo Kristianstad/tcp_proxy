@@ -8,6 +8,7 @@
 ARG SaM_VERSION="dev"
 ARG IMAGETYPE="application,base"
 ARG RUNDEPS="socat"
+ARG REMOVEFILES="/usr/bin/procan /usr/bin/filan"
 ARG STARTUPEXECUTABLES="/usr/bin/socat"
 # ARGs (can be passed to Build/Final) </END>
 
