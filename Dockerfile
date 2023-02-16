@@ -5,7 +5,7 @@
 ARG SaM_REPO=${SaM_REPO:-ghcr.io/kristianstad/secure_and_minimal}
 ARG ALPINE_VERSION=${ALPINE_VERSION:-3.17}
 ARG IMAGETYPE="application,base"
-ARG RUNDEPS="socat ssl_client"
+ARG RUNDEPS="socat"
 ARG REMOVEFILES="/usr/bin/procan /usr/bin/filan"
 ARG STARTUPEXECUTABLES="/usr/bin/socat"
 # ARGs (can be passed to Build/Final) </END>
