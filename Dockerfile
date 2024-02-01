@@ -7,7 +7,8 @@ ARG ALPINE_VERSION=${ALPINE_VERSION:-3.19}
 ARG IMAGETYPE="application,base"
 ARG RUNDEPS="socat"
 ARG REMOVEFILES="/usr/bin/procan /usr/bin/filan"
-ARG STARTUPEXECUTABLES="/usr/bin/socat"
+ARG STARTUPEXECUTABLES="/usr/bin/socat1"
+ARG FINALCMDS="mv /usr/bin/socat /usr/local/bin/"
 # ARGs (can be passed to Build/Final) </END>
 
 # Generic template (don't edit) <BEGIN>
