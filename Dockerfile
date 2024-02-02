@@ -6,9 +6,8 @@ ARG SaM_REPO=${SaM_REPO:-ghcr.io/kristianstad/secure_and_minimal}
 ARG ALPINE_VERSION=${ALPINE_VERSION:-3.19}
 ARG IMAGETYPE="application,base"
 ARG RUNDEPS="socat"
-ARG REMOVEFILES="/usr/bin/procan /usr/bin/filan"
+ARG REMOVEFILES="/usr/bin/procan /usr/bin/filan /usr/bin/socat"
 ARG STARTUPEXECUTABLES="/usr/bin/socat1"
-ARG FINALCMDS="mv /usr/bin/socat /usr/local/bin/"
 # ARGs (can be passed to Build/Final) </END>
 
 # Generic template (don't edit) <BEGIN>
@@ -35,7 +34,7 @@ COPY --from=build /finalfs /
 # =========================================================================
 ENV VAR_LINUX_USER="proxy" \
     VAR_PORT="8080" \
-    VAR_FINAL_COMMAND='socat TCP-LISTEN:${VAR_LISTEN_PORT:-$VAR_PORT},fork,reuseaddr TCP:$VAR_HOST:$VAR_PORT'
+    VAR_FINAL_COMMAND='socat1 TCP-LISTEN:${VAR_LISTEN_PORT:-$VAR_PORT},fork,reuseaddr TCP:$VAR_HOST:$VAR_PORT'
     
 # Generic template (don't edit) <BEGIN>
 USER starter
