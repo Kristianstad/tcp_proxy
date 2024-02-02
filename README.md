@@ -12,4 +12,4 @@ Secure and Minimal tcp proxy. Runs as non-privileged user and can therefore only
 * VAR_LISTEN_PORT (optional)
 
 ## Capabilities
-Can drop all but SETPCAP, SETGID and SETUID.
+Can drop all but CHOWN, SETPCAP, SETGID and SETUID.
