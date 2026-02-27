@@ -34,7 +34,7 @@ COPY --from=build /finalfs /
 # =========================================================================
 ENV VAR_LINUX_USER="proxy" \
     VAR_PORT="8080" \
-    VAR_FINAL_COMMAND='socat1 -d -d -d TCP-LISTEN:${VAR_LISTEN_PORT:-$VAR_PORT},fork,reuseaddr,keepalive,keepidle=60,keepintvl=10,keepcnt=6 TCP:$VAR_HOST:$VAR_PORT,keepalive,keepidle=60,keepintvl=10,keepcnt=6'
+    VAR_FINAL_COMMAND='socat1 -t 20 TCP-LISTEN:${VAR_LISTEN_PORT:-$VAR_PORT},fork,reuseaddr,backlog=512,keepalive,keepidle=7200,keepintvl=75,keepcnt=9 TCP:$VAR_HOST:$VAR_PORT,connect-timeout=14,keepalive,keepidle=7200,keepintvl=75,keepcnt=9'
     
 # Generic template (don't edit) <BEGIN>
 USER starter
