@@ -6,7 +6,7 @@ To activate traffic logging set VAR_FINAL_COMMAND='socat1 -d -d -d -d TCP-LISTEN
 ## Environment variables
 ### pre-set runtime variables
 * VAR_PORT="8080" (port on recieving host)
-* VAR_FINAL_COMMAND='socat1 TCP-LISTEN:${VAR_LISTEN_PORT:-$VAR_PORT},fork,reuseaddr TCP:$VAR_HOST:$VAR_PORT'
+* VAR_FINAL_COMMAND='socat1 -d -t 20 TCP-LISTEN:${VAR_LISTEN_PORT:-$VAR_PORT},fork,reuseaddr,backlog=512,keepalive,keepidle=7200,keepintvl=75,keepcnt=9 TCP:$VAR_HOST:$VAR_PORT,connect-timeout=14,keepalive,keepidle=7200,keepintvl=75,keepcnt=9'
 * VAR_LINUX_USER="proxy"
 
 ### Runtime variables
