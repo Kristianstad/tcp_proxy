@@ -34,6 +34,7 @@ COPY --from=build /finalfs /
 # =========================================================================
 ENV VAR_LINUX_USER="proxy" \
     VAR_PORT="8080" \
+    VAR_KEEP_CAPS="cap_net_bind_service,cap_net_admin,cap_net_raw" \
     VAR_FINAL_COMMAND='socat1 -d TCP-LISTEN:${VAR_LISTEN_PORT:-$VAR_PORT},fork,reuseaddr,backlog=512,so-reuseport,keepalive,keepidle=60,keepintvl=10,keepcnt=6,nodelay TCP:$VAR_HOST:$VAR_PORT,connect-timeout=14,keepalive,keepidle=60,keepintvl=10,keepcnt=6,nodelay'
     
 # Generic template (don't edit) <BEGIN>
