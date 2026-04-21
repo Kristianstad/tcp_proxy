@@ -14,4 +14,4 @@ To activate traffic logging set VAR_FINAL_COMMAND='socat1 -d -d -d -d TCP-LISTEN
 * VAR_LISTEN_PORT (the port this container listens to internally. Optional, same as VAR_PORT if not set)
 
 ## Capabilities
-Can drop all but CHOWN, SETPCAP, SETGID and SETUID.
+Can drop all but CHOWN, SETPCAP, SETGID and SETUID, but might also need NET_BIND_SERVICE, NET_RAW AND NET_ADMIN.
