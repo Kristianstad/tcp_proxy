@@ -33,7 +33,7 @@ COPY --from=build /finalfs /
 # =========================================================================
 # Final
 # =========================================================================
-# Re-deklarera ARG för att undvika varningar
+# Re-declare ARGs
 ARG ALPINE_VERSION
 ARG APP_VERSION
 
