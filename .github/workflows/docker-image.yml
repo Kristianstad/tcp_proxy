@@ -11,9 +11,9 @@ on:
         description: 'Application version / tag (e.g. 1.0.0)'
         required: false
       image_name:
-        description: 'Image name (e.g. tcp-proxy)'
+        description: 'Image name (e.g. tcp_proxy)'
         required: true
-        default: 'tcp-proxy'
+        default: 'tcp_proxy'
 
 env:
   REGISTRY: ghcr.io
