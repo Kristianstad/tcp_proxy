@@ -48,5 +48,5 @@ ONBUILD USER root
 # Generic template (don't edit) </END>
 
 LABEL org.opencontainers.image.version="${APP_VERSION}" \
-      org.opencontainers.image.title="tcp-proxy" \
+      org.opencontainers.image.title="tcp_proxy" \
       org.opencontainers.image.description="TCP Proxy (socat) ${APP_VERSION} based on secure_and_minimal ${ALPINE_VERSION}"
