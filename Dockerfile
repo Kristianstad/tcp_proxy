@@ -7,7 +7,8 @@ ARG ALPINE_VERSION=${ALPINE_VERSION:-3.23}
 ARG APP_VERSION=${APP_VERSION:-1.8.0.3}
 ARG IMAGETYPE="application"
 ARG BUILDCMDS=\
-"gcc -static -O2 -o /tmp/healthcheck /tmp/healthcheck.c "\
+"   gcc -static -O2 -o /tmp/healthcheck /tmp/healthcheck.c "\
+"&& strip --strip-all /tmp/healthcheck "\
 "&& chmod ugo+rx-w /tmp/healthcheck "\
 "&& cp -a /tmp/healthcheck /finalfs/usr/local/bin/"
 ARG RUNDEPS="socat"
