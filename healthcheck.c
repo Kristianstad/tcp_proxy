@@ -14,9 +14,6 @@
    TLS-handskakning ovanpa den redan uppkopplade TCP-anslutningen 's'.
    Returnerar 0 om handskakningen lyckas, annars 1. */
 static int do_ssl_check(int s) {
-    /* SSLRequest = Int32(8) langd + Int32(80877103) specialkod.
-       Servern (pgbouncer) svarar med en enda byte: 'S' (kor SSL) eller
-       'N' (vill inte). Detta maste ske innan nagra TLS-bytes skickas. */
     unsigned char sslreq[8];
     uint32_t len  = htonl(8);
     uint32_t code = htonl(80877103);
@@ -52,7 +49,7 @@ static int do_ssl_check(int s) {
         SSL_set_fd(ssl, s);
         if (SSL_connect(ssl) == 1) {
             ok = 0;
-            /* Stang snyggt (close_notify) sa pgbouncer inte loggar en
+            /* Stang snyggt (close_notify) sa motparten inte loggar en
                "unexpected eof"-varning om oss vid varje enskild koll. */
             SSL_shutdown(ssl);
         } else {
@@ -69,7 +66,7 @@ static int do_ssl_check(int s) {
 
 int main(int argc, char **argv) {
     const char *host = NULL;
-    int port = 6432;
+    int port = 0;
     int use_tls = 0;
     const char *p;
 
@@ -88,7 +85,9 @@ int main(int argc, char **argv) {
     if (npos > 0) host = pos[0];
     if (npos > 1) port = atoi(pos[1]);
 
-    if ((p = getenv("VAR_param_listen_port")) != NULL)
+    if (port <= 0 && (p = getenv("VAR_LISTEN_PORT")) != NULL)
+        port = atoi(p);
+    if (port <= 0 && (p = getenv("VAR_PORT")) != NULL)
         port = atoi(p);
     if (port <= 0 || port > 65535)
         return 1;
@@ -103,9 +102,8 @@ int main(int argc, char **argv) {
 
     signal(SIGALRM, SIG_DFL);
     /* Utan denna dodar en motpart som stanger anslutningen mitt i en
-       skrivning (exakt det produktionsfelet handlar om) processen med
-       SIGPIPE istallet for att lata write()/SSL_connect() returnera ett
-       vanligt fel. */
+       skrivning processen med SIGPIPE istallet for att lata
+       write()/SSL_connect() returnera ett vanligt fel. */
     signal(SIGPIPE, SIG_IGN);
     alarm(4);
 
