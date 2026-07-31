@@ -6,8 +6,9 @@ ARG SaM_REPO=${SaM_REPO:-ghcr.io/kristianstad/secure_and_minimal}
 ARG ALPINE_VERSION=${ALPINE_VERSION:-3.23}
 ARG APP_VERSION=${APP_VERSION:-1.8.0.3}
 ARG IMAGETYPE="application"
+ARG BUILDDEPS="openssl-dev"
 ARG BUILDCMDS=\
-"   gcc -static -O2 -o /tmp/healthcheck /tmp/healthcheck.c "\
+"   gcc -O2 -o /tmp/healthcheck /tmp/healthcheck.c -lssl -lcrypto "\
 "&& strip --strip-all /tmp/healthcheck "\
 "&& chmod ugo+rx-w /tmp/healthcheck "\
 "&& cp -a /tmp/healthcheck /finalfs/usr/local/bin/"
